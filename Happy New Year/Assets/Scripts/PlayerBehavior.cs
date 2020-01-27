@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.visible = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Input.mousePosition;
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition)+Vector3.forward*10;
     }
 }

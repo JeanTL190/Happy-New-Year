@@ -38,21 +38,19 @@ public class PlayerBehavior : MonoBehaviour
             anim.SetInteger("Fly", 0);
         }
     }
-    // Update is called once per frame
-    void Update()
+    
+    private void Movimentacao()
     {
-        posiMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward * 10;
-
         if (posiMouse.x > x)
         {
             if (posiMouse.y > y)
                 transform.position = new Vector3(x, y);
-            else if(posiMouse.y < -y)
+            else if (posiMouse.y < -y)
                 transform.position = new Vector3(x, -y);
             else
                 transform.position = new Vector3(x, posiMouse.y);
         }
-        else if(posiMouse.x < -x)
+        else if (posiMouse.x < -x)
         {
             if (posiMouse.y > y)
                 transform.position = new Vector3(-x, y);
@@ -70,6 +68,19 @@ public class PlayerBehavior : MonoBehaviour
             else
                 transform.position = new Vector3(posiMouse.x, posiMouse.y);
         }
-        
+
+    }
+
+    private void SoproCongelante()
+    {
+        if (Input.GetMouseButtonDown(0))
+            anim.SetTrigger("Attack");
+    }
+
+    void Update()
+    {
+        posiMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward * 10;
+        Movimentacao();
+        SoproCongelante();
     }
 }

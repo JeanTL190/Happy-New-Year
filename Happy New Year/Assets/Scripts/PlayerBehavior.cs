@@ -7,11 +7,12 @@ public class PlayerBehavior : MonoBehaviour
     Vector3 posiMouse,movMouseAnte,mov;
     [SerializeField] float x, y;
     [SerializeField] float time=2f;
-    [SerializeField] Animator anim; 
+    Animator anim; 
     void Start()
     {
         Cursor.visible = false;
         StartCoroutine("VerificaPosiMouseAnte");
+        anim = gameObject.GetComponent<Animator>();
     }
     IEnumerator VerificaPosiMouseAnte()
     {

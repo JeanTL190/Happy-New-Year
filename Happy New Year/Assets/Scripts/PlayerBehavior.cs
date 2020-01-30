@@ -4,16 +4,47 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    Vector3 posiMouse,movMouseAnte,mov;
-    [SerializeField] float x, y;
-    [SerializeField] float time=2f;
-    Animator anim; 
+    private Vector3 posiMouse,movMouseAnte,mov;
+    private Animator anim;
+    private int health;
+    private GameManager gameManager;
+
+    [SerializeField] private float x, y;
+    [SerializeField] private float time=2f;
+    
+
     void Start()
     {
-        Cursor.visible = false;
         StartCoroutine("VerificaPosiMouseAnte");
-        anim = gameObject.GetComponent<Animator>();
+        anim = this.gameObject.GetComponent<Animator>();
+        gameManager = FindObjectOfType<GameManager>();
+
     }
+    
+    private void DeterminaVida()
+    {
+        if (gameManager.GetDificuldade() == 1)
+            health = 20;
+        else if (gameManager.GetDificuldade() == 2)
+            health = 10;
+        else if (gameManager.GetDificuldade() == 3)
+            health = 5;
+        else
+            health = 1;
+    }
+
+    public void TookDamage()
+    {
+        health--;
+        if (health < 0)
+            Debug.Log("YouLoose");
+    }
+
+    public int GetVida()
+    {
+        return health;
+    }
+
     IEnumerator VerificaPosiMouseAnte()
     {
         while (true)
@@ -22,24 +53,7 @@ public class PlayerBehavior : MonoBehaviour
             movMouseAnte = posiMouse;
         }
     }
-    private void FixedUpdate()
-    {
-        mov = posiMouse- movMouseAnte;
-        
-        if(mov.normalized.y>0)
-        {
-            anim.SetInteger("Fly", 1);
-        }
-        else if(mov.normalized.y<0)
-        {
-            anim.SetInteger("Fly", -1);
-        }
-        else
-        {
-            anim.SetInteger("Fly", 0);
-        }
-    }
-    
+
     private void Movimentacao()
     {
         if (posiMouse.x > x)
@@ -76,6 +90,24 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
             anim.SetTrigger("Attack");
+    }
+
+    private void FixedUpdate()
+    {
+        mov = posiMouse - movMouseAnte;
+
+        if (mov.normalized.y > 0)
+        {
+            anim.SetInteger("Fly", 1);
+        }
+        else if (mov.normalized.y < 0)
+        {
+            anim.SetInteger("Fly", -1);
+        }
+        else
+        {
+            anim.SetInteger("Fly", 0);
+        }
     }
 
     void Update()

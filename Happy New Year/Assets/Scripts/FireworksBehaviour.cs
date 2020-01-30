@@ -5,34 +5,57 @@ using UnityEngine;
 public class FireworksBehaviour : MonoBehaviour
 {
 
-    Vector2 v, v2;
-    Rigidbody2D rb;
-    Animator anim;
-    [SerializeField] float speed = 1.5f; 
-    float distance;
+    private Vector2 v, v2;
+    private Rigidbody2D rb;
+    private Animator anim;
+    private Collider2D collider;
+    private PlayerBehavior player;
+
+    private float distance;
+    private bool freezin = false;
+
+    [SerializeField] private float speed = 1.5f;
+    [SerializeField] private float gravity = 1f;
+   
     void Start()
     {
        
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        anim = gameObject.GetComponent<Animator>();
-        v = transform.position;
-        v2 = new Vector2(Random.Range(-6, 6), Random.Range(-3.4f, 4.7f));
-        
-        transform.eulerAngles = new Vector3(0,0, Mathf.Rad2Deg * Mathf.Atan2((v2 - v).y, (v2 - v).x)-90);
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
+        anim = this.gameObject.GetComponent<Animator>();
+        v = this.transform.position;
+        v2 = new Vector2(Random.Range(-6, 6), Random.Range(-1.5f, 4.7f));
+        collider = this.gameObject.GetComponent<Collider2D>();
+        player = FindObjectOfType<PlayerBehavior>();
+
+        this.transform.eulerAngles = new Vector3(0,0, Mathf.Rad2Deg * Mathf.Atan2((v2 - v).y, (v2 - v).x)-90);
     }
 
     public void Destruir()
     {
         Destroy(this.gameObject);
     }
+
+    public void Freeze()
+    {
+        freezin = true;
+        rb.gravityScale = gravity;
+        anim.SetTrigger("Freeze");
+    }
+
     void Update()
     {
-        distance = Vector2.Distance(transform.position, v2);
-        if (distance > 0)
-            transform.position = Vector2.Lerp(transform.position, v2, Time.deltaTime* speed / distance);
+        distance = Vector2.Distance(this.transform.position, v2);
+        if (distance > 0 && !freezin)
+            this.transform.position = Vector2.Lerp(this.transform.position, v2, Time.deltaTime* speed / distance);
         if((Vector2)transform.position == v2)
         {
             anim.SetTrigger("Explode");
+            player.TookDamage();
+            collider.enabled = false;
+        }
+        if(transform.position.y<-6)
+        {
+            Destruir();
         }
         
     }

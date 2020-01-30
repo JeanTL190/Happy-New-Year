@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    [SerializeField] Sprite[] sprite;
-    SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite[] sprite;
+    private SpriteRenderer spriteRenderer;
     void Awake()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite[(int)Random.Range(0, sprite.Length)];
     }
 }

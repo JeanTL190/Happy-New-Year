@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: d1da61d1545d04e47beff4a72c2e13ae
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Hot Sauce
+  fontNames:
+  - Hot Sauce
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 315a5f69699c507409e585d1e0f0209e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

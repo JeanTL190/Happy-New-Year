@@ -13,6 +13,7 @@ public class FireworksBehaviour : MonoBehaviour
 
     private float distance;
     private bool freezin = false;
+    private bool explode = false;
 
     [SerializeField] private float speed = 1.5f;
     [SerializeField] private float gravity = 1f;
@@ -40,6 +41,17 @@ public class FireworksBehaviour : MonoBehaviour
         freezin = true;
         rb.gravityScale = gravity;
         anim.SetTrigger("Freeze");
+
+    }
+
+    public bool GetFreezin()
+    {
+        return freezin;
+    }
+
+    public void TakeDamage()
+    {
+        player.TookDamage();
     }
 
     void Update()
@@ -47,10 +59,10 @@ public class FireworksBehaviour : MonoBehaviour
         distance = Vector2.Distance(this.transform.position, v2);
         if (distance > 0 && !freezin)
             this.transform.position = Vector2.Lerp(this.transform.position, v2, Time.deltaTime* speed / distance);
-        if((Vector2)transform.position == v2)
+        if((Vector2)transform.position == v2 && !explode)
         {
             anim.SetTrigger("Explode");
-            player.TookDamage();
+            explode = true;
             collider.enabled = false;
         }
         if(transform.position.y<-6)

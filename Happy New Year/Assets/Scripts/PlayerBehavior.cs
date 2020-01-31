@@ -7,7 +7,10 @@ public class PlayerBehavior : MonoBehaviour
     private Vector3 posiMouse,movMouseAnte,mov;
     private Animator anim;
     private int health;
+    private int score = 0;
     private GameManager gameManager;
+
+    public static bool dead = false;
 
     [SerializeField] private float x, y;
     [SerializeField] private float time=2f;
@@ -18,6 +21,7 @@ public class PlayerBehavior : MonoBehaviour
         StartCoroutine("VerificaPosiMouseAnte");
         anim = this.gameObject.GetComponent<Animator>();
         gameManager = FindObjectOfType<GameManager>();
+        DeterminaVida();
 
     }
     
@@ -29,20 +33,28 @@ public class PlayerBehavior : MonoBehaviour
             health = 10;
         else if (gameManager.GetDificuldade() == 3)
             health = 5;
-        else
+        else if(gameManager.GetDificuldade() == 4)
             health = 1;
     }
 
     public void TookDamage()
     {
         health--;
-        if (health < 0)
-            Debug.Log("YouLoose");
     }
 
     public int GetVida()
     {
         return health;
+    }
+
+    public int ScoreValue()
+    {
+        return score;
+    }
+
+    public void ScoreUP()
+    {
+        score++;
     }
 
     IEnumerator VerificaPosiMouseAnte()
@@ -113,7 +125,8 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         posiMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward * 10;
-        Movimentacao();
+        if(!MenuFunctions.paused)
+            Movimentacao();
         SoproCongelante();
     }
 }

@@ -12,7 +12,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text score;
     [SerializeField] private Text highScore;
     [SerializeField] private Text newHighScore;
+    [SerializeField] private Text yourScore;
+    [SerializeField] private Text dificuldadeText;
+    [SerializeField] private Text easyName;
+    [SerializeField] private Text easyValue;
+    [SerializeField] private Text normalName;
+    [SerializeField] private Text normalValue;
+    [SerializeField] private Text hardName;
+    [SerializeField] private Text hardValue;
+    [SerializeField] private Text impossibleName;
+    [SerializeField] private Text impossibleValue;
     [SerializeField] private GameObject highScorePanel;
+    [SerializeField] private GameObject panel;
     [SerializeField] private InputField inp;
 
     void Start()
@@ -21,7 +32,6 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<PlayerBehavior>();
         dificuldade = MenuFunctions.dificuldade;
         GetHighScore();
-        PlayerPrefs.DeleteAll();
     }
 
     private void GetHighScore()
@@ -90,6 +100,8 @@ public class GameManager : MonoBehaviour
                     highScorePanel.SetActive(true);
                     newHighScore.text = highScore.text;
                 }
+                else
+                    ButSave();
             }
 
             else if (dificuldade == 2)
@@ -99,6 +111,8 @@ public class GameManager : MonoBehaviour
                     highScorePanel.SetActive(true);
                     newHighScore.text = highScore.text;
                 }
+                else
+                    ButSave();
             }
             else if (dificuldade == 3)
             {
@@ -107,6 +121,8 @@ public class GameManager : MonoBehaviour
                     highScorePanel.SetActive(true);
                     newHighScore.text = highScore.text;
                 }
+                else
+                    ButSave();
             }
             else
             {
@@ -116,6 +132,8 @@ public class GameManager : MonoBehaviour
                     highScorePanel.SetActive(true);
                     newHighScore.text = highScore.text;
                 }
+                else
+                    ButSave();
             }
         }
     }
@@ -123,16 +141,39 @@ public class GameManager : MonoBehaviour
     public void EndEdit()
     {
         if (dificuldade == 1)
-           PlayerPrefs.SetString("HighScoreEasy", inp.text);
+           PlayerPrefs.SetString("HighScoreEasyName", inp.text);
         else if (dificuldade == 2)
-           PlayerPrefs.SetString("HighScoreNormal", inp.text);
+           PlayerPrefs.SetString("HighScoreNormalName", inp.text);
         else if (dificuldade == 3)
-            PlayerPrefs.SetString("HighScoreHard", inp.text);
+            PlayerPrefs.SetString("HighScoreHardName", inp.text);
         else
-            PlayerPrefs.SetString("HighScoreImpossible", inp.text);
+            PlayerPrefs.SetString("HighScoreImpossibleName", inp.text);
     }
 
+    public void ButSave()
+    {
+        highScorePanel.SetActive(false);
+        panel.SetActive(true);
+        yourScore.text = score.text;
+        if (dificuldade == 1)
+            dificuldadeText.text = "Easy";
+        else if (dificuldade == 2)
+            dificuldadeText.text = "Normal";
+        else if (dificuldade == 3)
+            dificuldadeText.text = "Hard";
+        else
+            dificuldadeText.text = "Impossible";
 
+        easyName.text = PlayerPrefs.GetString("HighScoreEasyName", "");
+        easyValue.text = PlayerPrefs.GetInt("HighScoreEasy", 0).ToString();
+        normalName.text = PlayerPrefs.GetString("HighScoreNormalName", "");
+        normalValue.text = PlayerPrefs.GetInt("HighScoreNormal", 0).ToString();
+        hardName.text = PlayerPrefs.GetString("HighScoreHardName", "");
+        hardValue.text = PlayerPrefs.GetInt("HighScoreHard", 0).ToString();
+        impossibleName.text = PlayerPrefs.GetString("HighScoreImpossibleName", "");
+        impossibleValue.text = PlayerPrefs.GetInt("HighScoreImpossible", 0).ToString();
+
+    }
 
     public int GetDificuldade()
     {

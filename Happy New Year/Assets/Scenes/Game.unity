@@ -598,7 +598,18 @@ MonoBehaviour:
   score: {fileID: 1783652302}
   highScore: {fileID: 1919493640}
   newHighScore: {fileID: 1285758856}
+  yourScore: {fileID: 883511632}
+  dificuldadeText: {fileID: 1680535978}
+  easyName: {fileID: 983692756}
+  easyValue: {fileID: 291465716}
+  normalName: {fileID: 272741176}
+  normalValue: {fileID: 1760723953}
+  hardName: {fileID: 692077514}
+  hardValue: {fileID: 78520764}
+  impossibleName: {fileID: 305521905}
+  impossibleValue: {fileID: 881060339}
   highScorePanel: {fileID: 2142321242}
+  panel: {fileID: 942731845}
   inp: {fileID: 1898391336}
 --- !u!4 &238730897
 Transform:
@@ -3006,7 +3017,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1446789365}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 238730896}
+        m_MethodName: ButSave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1446789365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3830,7 +3852,18 @@ MonoBehaviour:
         m_CallState: 2
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}

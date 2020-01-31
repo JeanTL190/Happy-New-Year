@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7044685628186523136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7044685628186523137}
+  - component: {fileID: 7044685628186523142}
+  m_Layer: 0
+  m_Name: FireworksSpawn0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7044685628186523137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7044685628186523136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7044685628186523142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7044685628186523136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13558d58346baf84ca4bb261661b2ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireworks:
+  - {fileID: 5807794406219800095, guid: 38ea66b5101a1b745a73c205c736040f, type: 3}
+  - {fileID: 6597554950390956817, guid: 652b85dc3328d8944acf7f4649448f14, type: 3}
+  - {fileID: 9024915639107565900, guid: 82646c48c633fa9429e712c69f363812, type: 3}
+  - {fileID: 412326078809909133, guid: b4274d6f8ca00644da42614a24b412ab, type: 3}
+  - {fileID: 4523674652691828029, guid: 6a967f35d66897d4c9c00c9601ebce8b, type: 3}
+  - {fileID: 3358019903267003121, guid: f4c8ea7195de023468edcd75ec5c92a0, type: 3}
+  - {fileID: 6547154298506642490, guid: 23ba240a2f8eae94abab28c4cde46afe, type: 3}
+  - {fileID: 2859586229629875930, guid: 9cb8949f63b4445468f0309c687d889e, type: 3}

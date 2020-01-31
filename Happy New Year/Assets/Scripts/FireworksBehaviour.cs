@@ -51,7 +51,8 @@ public class FireworksBehaviour : MonoBehaviour
 
     public void TakeDamage()
     {
-        player.TookDamage();
+        if(player!=null)
+            player.TookDamage();
     }
 
     void Update()

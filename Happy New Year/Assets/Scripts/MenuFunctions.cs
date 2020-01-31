@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuFunctions : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject pauseMenuUI = null;
+    [SerializeField] private GameObject menuIniciar = null;
     public static bool paused = false;
-    public static int dificuldade=4;
+    public static int dificuldade = 1;
 
     public void SetDificuldade(int d)
     {
@@ -39,9 +40,21 @@ public class MenuFunctions : MonoBehaviour
 
     }
 
+    public void ActivateSomeMenu(GameObject other)
+    {
+        menuIniciar.SetActive(false);
+        other.SetActive(true);
+    }
+
+    public void Return(GameObject other)
+    {
+        menuIniciar.SetActive(true);
+        other.SetActive(false);
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !PlayerBehavior.dead)
+        if (Input.GetKeyDown(KeyCode.Escape) && !PlayerBehavior.dead && pauseMenuUI != null)
         {
             if (paused)
             {

@@ -5,9 +5,11 @@ using UnityEngine;
 public class FireworksSpawn : MonoBehaviour
 {
     [SerializeField] private GameObject[] fireworks;
+    private AudioSource audio;
     void Start()
     {
         StartCoroutine("Spawn");
+        audio = this.gameObject.GetComponent<AudioSource>();
     }
 
     IEnumerator Spawn()
@@ -18,6 +20,7 @@ public class FireworksSpawn : MonoBehaviour
             GameObject instancia = fireworks[Random.Range(0, fireworks.Length)];
             instancia.transform.position = this.transform.position;
             Instantiate(instancia);
+            audio.Play();
         }
     }
 }

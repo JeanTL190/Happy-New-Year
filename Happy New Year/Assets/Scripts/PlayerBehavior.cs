@@ -6,6 +6,7 @@ public class PlayerBehavior : MonoBehaviour
 {
     private Vector3 posiMouse,movMouseAnte,mov;
     private Animator anim;
+    private AudioSource audio;
     private int health;
     private int score = 0;
     private GameManager gameManager;
@@ -20,9 +21,9 @@ public class PlayerBehavior : MonoBehaviour
     {
         StartCoroutine("VerificaPosiMouseAnte");
         anim = this.gameObject.GetComponent<Animator>();
+        audio = this.gameObject.GetComponent<AudioSource>();
         gameManager = FindObjectOfType<GameManager>();
         DeterminaVida();
-
     }
     
     private void DeterminaVida()
@@ -120,6 +121,11 @@ public class PlayerBehavior : MonoBehaviour
         {
             anim.SetInteger("Fly", 0);
         }
+    }
+
+    public void PlayAudio()
+    {
+        audio.Play();
     }
 
     void Update()

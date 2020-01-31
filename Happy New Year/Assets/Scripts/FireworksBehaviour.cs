@@ -10,6 +10,7 @@ public class FireworksBehaviour : MonoBehaviour
     private Animator anim;
     private Collider2D collider;
     private PlayerBehavior player;
+    private AudioSource audio;
 
     private float distance;
     private bool freezin = false;
@@ -23,6 +24,7 @@ public class FireworksBehaviour : MonoBehaviour
        
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         anim = this.gameObject.GetComponent<Animator>();
+        audio = this.gameObject.GetComponent<AudioSource>();
         v = this.transform.position;
         v2 = new Vector2(Random.Range(-6, 6), Random.Range(-1.5f, 4.7f));
         collider = this.gameObject.GetComponent<Collider2D>();
@@ -63,6 +65,7 @@ public class FireworksBehaviour : MonoBehaviour
         if((Vector2)transform.position == v2 && !explode)
         {
             anim.SetTrigger("Explode");
+            audio.Play();
             explode = true;
             collider.enabled = false;
         }

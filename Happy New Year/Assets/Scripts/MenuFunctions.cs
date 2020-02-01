@@ -10,6 +10,10 @@ public class MenuFunctions : MonoBehaviour
     public static bool paused = false;
     public static int dificuldade = 1;
 
+    private void Start()
+    {
+        Resume();
+    }
     public void SetDificuldade(int d)
     {
         dificuldade = d;
@@ -27,14 +31,16 @@ public class MenuFunctions : MonoBehaviour
     }
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
+        if(pauseMenuUI!=null)
+            pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         paused = false;
     }
 
     void Pause()
     {
-        pauseMenuUI.SetActive(true);
+        if (pauseMenuUI != null)
+            pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         paused = true;
 
@@ -42,13 +48,15 @@ public class MenuFunctions : MonoBehaviour
 
     public void ActivateSomeMenu(GameObject other)
     {
-        menuIniciar.SetActive(false);
+        if(menuIniciar!=null)
+            menuIniciar.SetActive(false);
         other.SetActive(true);
     }
 
     public void Return(GameObject other)
     {
-        menuIniciar.SetActive(true);
+        if (menuIniciar != null)
+            menuIniciar.SetActive(true);
         other.SetActive(false);
     }
 
